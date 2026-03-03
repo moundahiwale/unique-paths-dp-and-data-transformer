@@ -1,0 +1,11 @@
+@use '../../styles/_mixins' as mixins;
+
+.data-transformer {  
+  .back-button {
+    @include mixins.button;
+  }
+  
+  h2 {
+    @include mixins.h2;
+  } 
+}
