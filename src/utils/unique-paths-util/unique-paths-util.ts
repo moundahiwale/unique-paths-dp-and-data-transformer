@@ -11,17 +11,17 @@ function getUniquePaths(gridDimensions: GridDimensions): GridResult {
   }
 
   // Create a 2D array to store the number of unique paths to each cell
-  const dp: number[][] = Array.from({ length: rows }, () =>
+  const paths: number[][] = Array.from({ length: rows }, () =>
     Array(cols).fill(0),
   );
 
   // For the first row, you cannot move from above and for the first column, you cannot move from left, so you can only move right or down respectively.
   // Hence initialise the first row and first column with 1 as there is only 1 way to reach these cells.
   for (let rowIndex = 0; rowIndex < rows; rowIndex++) {
-    dp[rowIndex][0] = 1;
+    paths[rowIndex][0] = 1;
   }
   for (let columnIndex = 0; columnIndex < cols; columnIndex++) {
-    dp[0][columnIndex] = 1;
+    paths[0][columnIndex] = 1;
   }
 
   // Loop over the 2D array starting from second row and second column (rowIndex = 1 and columnIndex = 1 respectively)
@@ -29,13 +29,13 @@ function getUniquePaths(gridDimensions: GridDimensions): GridResult {
   // Time complexity O(n*m) where n is number of rows and m is number of columns, space complexity O(n*m) for the dp array
   for (let rowIndex = 1; rowIndex < rows; rowIndex++) {
     for (let columnIndex = 1; columnIndex < cols; columnIndex++) {
-      dp[rowIndex][columnIndex] =
-        dp[rowIndex - 1][columnIndex] + dp[rowIndex][columnIndex - 1];
+      paths[rowIndex][columnIndex] =
+        paths[rowIndex - 1][columnIndex] + paths[rowIndex][columnIndex - 1];
     }
   }
 
   // The bottom-right cell contains the number of unique paths from top-left to bottom-right
-  return { grid: dp, uniquePaths: dp[rows - 1][cols - 1] };
+  return { grid: paths, uniquePaths: paths[rows - 1][cols - 1] };
 }
 
 function isLastCell(
