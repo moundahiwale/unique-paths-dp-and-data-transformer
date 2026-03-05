@@ -1,3 +1,5 @@
+@use './_globals' as globals;
+
 @mixin button() {
   border: none;
   border-radius: 0.5rem;
@@ -6,6 +8,17 @@
 
   &:hover {
     background-color: darkgray;
+  }
+}
+
+@mixin button-primary() {
+  @include button();
+  background-color: globals.$primary-button-bg-color;
+  color: white;
+
+  &:hover {
+    background-color: globals.$primary-button-hover-bg-color;
+    border-color: globals.$primary-button-border-color;
   }
 }
 
