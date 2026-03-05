@@ -4,8 +4,35 @@
   .back-button {
     @include mixins.button();
   }
-  
+
   h2 {
     @include mixins.h2;
-  } 
+  }
+
+  div {
+    margin: 1rem 0;
+  }
+
+  .unique-grid-container {
+    margin-top: 1rem;
+
+    input {
+      @include mixins.input;
+
+      &#grid-rows {
+        margin-right: 0.5rem;
+      }
+    }
+
+    .display-grid-button {
+      @include mixins.button-primary;
+      margin-left: 1rem;
+    }
+
+    .grid-display {
+      .grid-table {
+        @include mixins.table;
+      }
+    }
+  }
 }

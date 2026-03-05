@@ -2,9 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import './DataTransformer.scss';
 import { mockIntelligenceData } from '../../data/mock-intelligence-data';
 import { useState } from 'react';
-import type {
-  TransformedIntelligence,
-} from '../../models/Intelligence';
+import type { TransformedIntelligence } from '../../models/Intelligence';
 import { countBy, topN } from '../../utils/data-transform-util';
 
 function DataTransformer() {
@@ -26,7 +24,7 @@ function DataTransformer() {
     };
 
     // I have chosen just the countryCode and threat attributes as that sufficiently demonstrates usage of functional programming and common data transformation techniques
-    // This could be easily extended to include other attributes. 
+    // This could be easily extended to include other attributes.
     // In fact, as a part of question 3, have the person implement something live e.g. calculate the top 3 seenBy values with their counts
 
     setTransformedData(transformed);
@@ -46,8 +44,8 @@ function DataTransformer() {
           Transform Data
         </button>
         <div className='alert-info'>
-          ℹ️ Click transform data to get the top 3 values for countryCode
-          and threat attribute in above input data and their tally
+          ℹ️ Click transform data to get the top 3 values for countryCode and
+          threat attribute in above input data and their tally
         </div>
         <code>{transformedData && JSON.stringify(transformedData)}</code>
       </div>
