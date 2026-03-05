@@ -46,3 +46,23 @@
     padding: 0.5rem;
   }
 }
+
+@mixin alert-info {
+  border: 1px solid globals.$alert-info-border-color;
+  background-color: globals.$alert-info-bg-color;
+  border-radius: 0.5rem;
+  color: globals.$alert-info-text-color;
+  margin: 1rem 0;
+  padding: 0.5rem;
+  width: fit-content;
+}
+
+@mixin alert-warning {
+  border: 1px solid globals.$alert-info-border-color;
+  background-color: globals.$alert-info-bg-color;
+  border-radius: 0.5rem;
+  color: globals.$alert-info-text-color;
+  margin: 1rem 0;
+  padding: 0.5rem;
+  width: fit-content;
+}

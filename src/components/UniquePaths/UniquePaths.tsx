@@ -1,17 +1,28 @@
 import { useNavigate } from 'react-router-dom';
 import './UniquePaths.scss';
 import { useState } from 'react';
-import type { GridDimensions } from '../../models/Grid';
+import type { GridDimensions, GridResult } from '../../models/Grid';
+import { getUniquePaths, isLastCell } from '../../utils/unique-paths-util/unique-paths-util';
 
 function UniquePaths() {
   const navigate = useNavigate();
+  const intialGridRowsAndCols = 3;
 
   const [gridDimensions, setGridDimensions] = useState<GridDimensions>({
-    rows: 3,
-    cols: 3,
+    rows: intialGridRowsAndCols,
+    cols: intialGridRowsAndCols,
   } as GridDimensions);
 
-  const handleUniquePathsBtnClick = () => {};
+  const initialGridResult: GridResult = getUniquePaths(gridDimensions);
+
+  const [gridResult, setGridResult] = useState<GridResult>({
+    grid: initialGridResult.grid,
+    uniquePaths: initialGridResult.uniquePaths,
+  });
+
+  const handleUniquePathsBtnClick = () => {
+    setGridResult(getUniquePaths(gridDimensions));
+  };
 
   return (
     <div className='unique-paths'>
@@ -25,8 +36,7 @@ function UniquePaths() {
       </div>
       <div className='unique-grid-container'>
         <div>
-          Enter the grid dimensions (default 3x3 grid with placeholder values as
-          0):
+          Enter the grid dimensions (default 3x3 grid) and click calculate:
         </div>
         <div className='grid-dimensions'>
           <input
@@ -57,23 +67,41 @@ function UniquePaths() {
           />
           <button
             onClick={handleUniquePathsBtnClick}
-            className='display-grid-button'
+            className='calculate-paths-button'
           >
             Calculate unique paths
           </button>
         </div>
         <div className='grid-display'>
-          <table className='grid-table'>
-            <tbody>
-              {Array.from({ length: gridDimensions.rows }, (_, i) => (
-                <tr key={i}>
-                  {Array.from({ length: gridDimensions.cols }, (_, j) => (
-                    <td key={j}>0</td>
+          {gridResult.grid.length === 0 ? (
+            <div className='alert-invalid-grid'>
+              Enter valid grid dimensions
+            </div>
+          ) : (
+            <div className='grid-result'>
+              <div className='grid-paths'>{`Paths: ${gridResult.uniquePaths}`}</div>
+              <table className='grid-table'>
+                <tbody>
+                  {gridResult.grid.map((row, rowIndex) => (
+                    <tr key={rowIndex}>
+                      {row.map((col, columnIndex) => (
+                        <td
+                          key={columnIndex}
+                          className={
+                            isLastCell(rowIndex, columnIndex, gridResult)
+                              ? 'result-cell'
+                              : ''
+                          }
+                        >
+                          {col}
+                        </td>
+                      ))}
+                    </tr>
                   ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                </tbody>
+              </table>
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -9,8 +9,8 @@ function App() {
     <Routes>
       <Route path='/' element={<Home />} />
 
-      <Route path='/uniquePaths' element={<UniquePaths />} />
-      <Route path='/dataTransformer' element={<DataTransformer />} />
+      <Route path='/unique-paths' element={<UniquePaths />} />
+      <Route path='/data-transformer' element={<DataTransformer />} />
 
       <Route
         path='*'

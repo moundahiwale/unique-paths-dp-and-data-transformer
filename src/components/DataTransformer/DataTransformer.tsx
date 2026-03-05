@@ -3,7 +3,10 @@ import './DataTransformer.scss';
 import { mockIntelligenceData } from '../../data/mock-intelligence-data';
 import { useState } from 'react';
 import type { TransformedIntelligence } from '../../models/Intelligence';
-import { countBy, topN } from '../../utils/data-transform-util';
+import {
+  countBy,
+  topN,
+} from '../../utils/data-transform-util/data-transform-util';
 
 function DataTransformer() {
   const [transformedData, setTransformedData] =
@@ -43,7 +46,7 @@ function DataTransformer() {
         <button className='transform-button' onClick={handleDataTransform}>
           Transform Data
         </button>
-        <div className='alert-info'>
+        <div className='alert-transform-data'>
           ℹ️ Click transform data to get the top 3 values for countryCode and
           threat attribute in above input data and their tally
         </div>

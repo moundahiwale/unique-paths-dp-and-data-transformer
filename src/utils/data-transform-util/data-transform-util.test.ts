@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { countBy, topN } from './data-transform-util';
-import { mockIntelligenceData } from '../data/mock-intelligence-data';
+import { mockIntelligenceData } from '../../data/mock-intelligence-data';
 
 describe('data-transform-util', () => {
   it('countBy should tally values for countryCode', () => {
@@ -21,8 +21,8 @@ describe('data-transform-util', () => {
     const top3Countries = topN(countryCounts, 3);
     // Expected: us with a count of 2
     expect(top3Countries.us).toBe(2);
-    
-    // ensure only 3 keys returned
+
+    // Ensure only 3 keys returned
     expect(Object.keys(top3Countries)).toHaveLength(3);
   });
 });

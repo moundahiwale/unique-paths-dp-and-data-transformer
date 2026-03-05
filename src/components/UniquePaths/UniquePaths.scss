@@ -24,15 +24,30 @@
       }
     }
 
-    .display-grid-button {
+    .calculate-paths-button {
       @include mixins.button-primary;
       margin-left: 1rem;
     }
 
     .grid-display {
-      .grid-table {
-        @include mixins.table;
+      .grid-result {
+        .grid-paths {
+          margin: 0.5rem 0;
+        }
+
+        .grid-table {
+          @include mixins.table;
+
+          .result-cell {
+            background-color: red;
+            color: white;
+          }
+        }
       }
+    }
+
+    .alert-invalid-grid {
+      @include mixins.alert-warning;
     }
   }
 }
